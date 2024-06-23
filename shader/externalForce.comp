@@ -8,7 +8,7 @@ layout(push_constant) uniform PushConstants {
 
 void main()
 {
-    float mouseSize = 120.0;
+    float mouseSize = 10.0;
     float dist = length(gl_GlobalInvocationID.xy - pushConstant.mousePosition);
     if(dist < mouseSize && length(pushConstant.mouseMove) > 4.0){
         vec2 force = pushConstant.mouseMove * 0.05;

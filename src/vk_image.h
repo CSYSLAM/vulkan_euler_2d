@@ -2,8 +2,8 @@
 #include <vulkan/vulkan.hpp>
 
 uint32_t findMemoryTypeIndex(vk::PhysicalDevice physicalDevice,
-                             vk::MemoryRequirements requirements,
-                             vk::MemoryPropertyFlags memoryProp)
+    vk::MemoryRequirements requirements,
+    vk::MemoryPropertyFlags memoryProp)
 {
     uint32_t memoryTypeIndex{ UINT32_MAX };
     vk::PhysicalDeviceMemoryProperties memoryProperties = physicalDevice.getMemoryProperties();
@@ -21,7 +21,7 @@ uint32_t findMemoryTypeIndex(vk::PhysicalDevice physicalDevice,
 }
 
 void setImageLayout(vk::CommandBuffer commandBuffer, vk::Image image,
-                    vk::ImageLayout oldLayout, vk::ImageLayout newLayout)
+    vk::ImageLayout oldLayout, vk::ImageLayout newLayout)
 {
     vk::PipelineStageFlags srcStageMask = vk::PipelineStageFlagBits::eAllCommands;
     vk::PipelineStageFlags dstStageMask = vk::PipelineStageFlagBits::eAllCommands;
@@ -60,11 +60,11 @@ void setImageLayout(vk::CommandBuffer commandBuffer, vk::Image image,
 struct Image
 {
     Image(vk::Device device,
-          vk::PhysicalDevice physicalDevice,
-          vk::CommandBuffer commandBuffer,
-          vk::Queue queue,
-          int width, int height,
-          vk::Format format = vk::Format::eR32G32B32A32Sfloat)
+        vk::PhysicalDevice physicalDevice,
+        vk::CommandBuffer commandBuffer,
+        vk::Queue queue,
+        int width, int height,
+        vk::Format format = vk::Format::eR32G32B32A32Sfloat)
         : device{ device }
     {
         createImage(width, height, format);
@@ -84,9 +84,9 @@ struct Image
         imageCreateInfo.setMipLevels(1);
         imageCreateInfo.setArrayLayers(1);
         imageCreateInfo.setUsage(vk::ImageUsageFlagBits::eStorage |
-                                 vk::ImageUsageFlagBits::eTransferSrc |
-                                 vk::ImageUsageFlagBits::eTransferDst |
-                                 vk::ImageUsageFlagBits::eSampled);
+            vk::ImageUsageFlagBits::eTransferSrc |
+            vk::ImageUsageFlagBits::eTransferDst |
+            vk::ImageUsageFlagBits::eSampled);
         image = device.createImageUnique(imageCreateInfo);
     }
 
@@ -94,7 +94,7 @@ struct Image
     {
         vk::MemoryRequirements requirements = device.getImageMemoryRequirements(*image);
         uint32_t memoryTypeIndex = findMemoryTypeIndex(physicalDevice, requirements,
-                                                       vk::MemoryPropertyFlagBits::eDeviceLocal);
+            vk::MemoryPropertyFlagBits::eDeviceLocal);
         vk::MemoryAllocateInfo memoryAllocateInfo;
         memoryAllocateInfo.setAllocationSize(requirements.size);
         memoryAllocateInfo.setMemoryTypeIndex(memoryTypeIndex);

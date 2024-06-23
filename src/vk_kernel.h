@@ -49,10 +49,10 @@ std::vector<unsigned int> compileToSPV(const std::string& glslShader)
 struct ComputeKernel
 {
     ComputeKernel(vk::Device device,
-                  const std::string& path,
-                  const std::vector<vk::DescriptorSetLayoutBinding>& bindings,
-                  vk::DescriptorPool descPool,
-                  size_t pushSize = 0)
+        const std::string& path,
+        const std::vector<vk::DescriptorSetLayoutBinding>& bindings,
+        vk::DescriptorPool descPool,
+        size_t pushSize = 0)
         : device{ device }
         , pushSize{ pushSize }
     {
@@ -120,7 +120,7 @@ struct ComputeKernel
     }
 
     void updateDescriptorSet(uint32_t binding, uint32_t count, const Image& image,
-                             vk::DescriptorType descType = vk::DescriptorType::eStorageImage)
+        vk::DescriptorType descType = vk::DescriptorType::eStorageImage)
     {
         vk::DescriptorImageInfo descImageInfo;
         descImageInfo.setImageView(*image.view);

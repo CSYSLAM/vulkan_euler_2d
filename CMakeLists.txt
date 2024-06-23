@@ -7,8 +7,8 @@ add_subdirectory(external/glslang)
 
 add_executable(${PROJECT_NAME} 
     src/main.cpp 
-    src/image.hpp
-    src/kernel.hpp
+    src/vk_image.h
+    src/vk_kernel.h
 )
 
 target_link_libraries(
